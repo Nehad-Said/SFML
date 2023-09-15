@@ -1,0 +1,139 @@
+*#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
+#include <random>
+using namespace sf;
+using namespace std;
+
+int main(int argc, char ** argv){
+  sf::RenderWindow renderWindow(sf::VideoMode(1000, 1000), "Demo Game");
+
+  sf::Event event;
+
+
+
+// triangle
+sf::CircleShape triangle(50.f, 3);
+triangle.setPosition(200.0f, 100.0f);
+triangle.setFillColor(sf::Color::Red);
+
+sf::CircleShape shapetriangle(50.f, 3);
+shapetriangle.setFillColor(sf::Color(NULL));
+shapetriangle.setOutlineThickness(5);
+shapetriangle.setPosition(650.0f, 725.0f);
+shapetriangle.setOutlineColor(sf::Color(250, 0, 0));
+
+
+//  square
+sf::CircleShape square(50.f, 4);
+    square.rotate(45);
+
+square.setPosition(250.0f, 175.0f);
+ square.setFillColor(sf::Color::Green);
+
+     sf::CircleShape shapesquare(50.f, 4);
+    shapesquare.rotate(45);
+shapesquare.setFillColor(sf::Color(NULL));
+shapesquare.setOutlineThickness(5);
+shapesquare.setPosition(550.0f, 700.0f);
+shapesquare.setOutlineColor(sf::Color(250, 0, 0));
+
+//  octagon
+sf::CircleShape octagon(50.f, 8 );
+   octagon.setPosition(200.0f, 300.0f);
+  octagon.setFillColor(sf::Color::Blue);
+
+    sf::CircleShape shapeoctagon(50.f, 8);
+shapeoctagon.setFillColor(sf::Color(NULL));
+shapeoctagon.setOutlineThickness(5);
+shapeoctagon.setPosition(350.0f, 725.0f);
+shapeoctagon.setOutlineColor(sf::Color(0, 0, 250));
+
+   // circleshape
+  sf::CircleShape circleShape(50);
+ circleShape.setPosition(200.0f, 425.0f);
+  circleShape.setFillColor(sf::Color::White);
+
+  sf::CircleShape shape(50);
+shape.setFillColor(sf::Color(NULL));
+shape.setOutlineThickness(5);
+shape.setPosition(200.0f, 725.0f);
+shape.setOutlineColor(sf::Color(250, 150, 100));
+
+ RectangleShape line(Vector2f(800, 3));
+   line .setPosition(200.0f, 700.0f);
+
+RectangleShape line2(Vector2f(800, 4));
+   line2 .setPosition(200.0f, 850.0f);
+
+
+  while (renderWindow.isOpen()){
+    while (renderWindow.pollEvent(event)){
+      if (event.type == sf::Event::EventType::Closed)
+        renderWindow.close();
+    }
+
+
+      if(Keyboard::isKeyPressed(Keyboard::Key::T)&& Keyboard::isKeyPressed(Keyboard::Key::Left)){
+            triangle.move(Vector2f(-0.115f,0.0f));
+        } else if(Keyboard::isKeyPressed(Keyboard::Key::T)&&Keyboard::isKeyPressed(Keyboard::Key::Right)){
+            triangle.move(Vector2f(+0.115f,0.0f));
+        }else if(Keyboard::isKeyPressed(Keyboard::Key::T)&&Keyboard::isKeyPressed(Keyboard::Key::Up)){
+           triangle.move(Vector2f(0.0f,-0.115f));
+        }else if(Keyboard::isKeyPressed(Keyboard::Key::T)&&Keyboard::isKeyPressed(Keyboard::Key::Down)){
+            triangle.move(Vector2f(0.0f,+0.115f));
+        }
+
+
+          if(Keyboard::isKeyPressed(Keyboard::Key::O)&& Keyboard::isKeyPressed(Keyboard::Key::Left)){
+            octagon.move(Vector2f(-0.115f,0.0f));
+        } else if(Keyboard::isKeyPressed(Keyboard::Key::O)&&Keyboard::isKeyPressed(Keyboard::Key::Right)){
+            octagon.move(Vector2f(+0.115f,0.0f));
+        }else if(Keyboard::isKeyPressed(Keyboard::Key::O)&&Keyboard::isKeyPressed(Keyboard::Key::Up)){
+            octagon.move(Vector2f(0.0f,-0.115f));
+        }else if(Keyboard::isKeyPressed(Keyboard::Key::O)&&Keyboard::isKeyPressed(Keyboard::Key::Down)){
+            octagon.move(Vector2f(0.0f,+0.115f));
+        }
+
+
+          if(Keyboard::isKeyPressed(Keyboard::Key::S)&& Keyboard::isKeyPressed(Keyboard::Key::Left)){
+            square.move(Vector2f(-0.115f,0.0f));
+        } else if(Keyboard::isKeyPressed(Keyboard::Key::S)&&Keyboard::isKeyPressed(Keyboard::Key::Right)){
+           square.move(Vector2f(+0.115f,0.0f));
+        }else if(Keyboard::isKeyPressed(Keyboard::Key::S)&&Keyboard::isKeyPressed(Keyboard::Key::Up)){
+            square.move(Vector2f(0.0f,-0.115f));
+        }else if(Keyboard::isKeyPressed(Keyboard::Key::S)&&Keyboard::isKeyPressed(Keyboard::Key::Down)){
+           square.move(Vector2f(0.0f,+0.115f));
+        }
+if(Keyboard::isKeyPressed(Keyboard::Key::C)&& Keyboard::isKeyPressed(Keyboard::Key::Left)){
+            circleShape.move(Vector2f(-0.115f,0.0f));
+        } else if (Keyboard::isKeyPressed(Keyboard::Key::C)&& Keyboard::isKeyPressed(Keyboard::Key::Right)){
+            circleShape.move(Vector2f(+0.115f,0.0f));
+        }else if(Keyboard::isKeyPressed(Keyboard::Key::C)&&Keyboard::isKeyPressed(Keyboard::Key::Up)){
+            circleShape.move(Vector2f(0.0f,-0.115f));
+        }else if(Keyboard::isKeyPressed(Keyboard::Key::C)&&Keyboard::isKeyPressed(Keyboard::Key::Down)){
+            circleShape.move(Vector2f(0.0f,+0.115f));
+        }
+
+
+
+
+
+
+    renderWindow.clear();
+   renderWindow.draw(shape);
+     renderWindow.draw(circleShape);
+      renderWindow.draw( triangle);
+      renderWindow.draw(shapetriangle);
+      renderWindow.draw(square);
+      renderWindow.draw(shapesquare);
+       renderWindow.draw(octagon);
+       renderWindow.draw(shapeoctagon);
+     renderWindow.draw(line);
+       renderWindow.draw(line2);
+    renderWindow.display();
+  }
+}
